@@ -8,3 +8,5 @@ const BlockInfo = ({ block }) => {
     </div>
   );
 }
+
+export default BlockInfo;

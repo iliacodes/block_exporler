@@ -7,3 +7,5 @@ const BlockTable = ({ block }) => {
     </div>
   );
 }
+
+export default BlockTable;

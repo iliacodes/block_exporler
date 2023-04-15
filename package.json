@@ -38,5 +38,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1"
   }
 }

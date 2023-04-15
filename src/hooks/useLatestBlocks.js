@@ -2,6 +2,17 @@ import * as Alchemy from "@alch/alchemy-web3";
 import { useEffect, useState } from "react";
 import { useBlockNumber } from "./useBlockNumber";
 
+import dotenv from 'dotenv'
+dotenv.config();
+
+const alchemy = new Alchemy(settings);
+
+
+const settings = {
+  apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
+  network: Network.ETH_MAINNET,
+};
+
 function useLatestBlocks() {
   const [blocks, setBlocks] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -13,7 +24,7 @@ function useLatestBlocks() {
     const fetchBlocks = async () => {
       try {
         const newBlocks = [];
-        let latestBlockNumber = await Alchemy.getLatestBlockNumber();
+        let latestBlockNumber = await alchemy.getLatestBlockNumber();
 
         if (latestBlockNumber <= 0) {
           setBlocks(newBlocks);
@@ -23,7 +34,7 @@ function useLatestBlocks() {
 
         for (let i = 0; i < 10; i++) {
           latestBlockNumber -= 1;
-          const block = await Alchemy.getBlock(latestBlockNumber);
+          const block = await alchemy.getBlock(latestBlockNumber);
           newBlocks.push(block);
         }
 

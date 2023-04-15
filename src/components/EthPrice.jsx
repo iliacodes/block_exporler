@@ -7,3 +7,5 @@ const EthPrice = ({ ethPrice }) => {
     </div>
   );
 }
+
+export default EthPrice;
