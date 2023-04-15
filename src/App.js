@@ -2,7 +2,6 @@ import './App.css';
 import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
 import {BlockInfo, BlockTable, EthPrice} from './components';
-require('dotenv').config();
 
 
 // Refer to the README doc for more information about using API

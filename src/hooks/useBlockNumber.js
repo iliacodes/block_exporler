@@ -1,6 +1,5 @@
 import { Alchemy } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
-require('dotenv').config();
 
 
 const settings = {

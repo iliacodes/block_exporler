@@ -2,9 +2,6 @@ import * as Alchemy from "@alch/alchemy-web3";
 import { useEffect, useState } from "react";
 import { useBlockNumber } from "./useBlockNumber";
 
-import dotenv from 'dotenv'
-dotenv.config();
-
 const alchemy = new Alchemy(settings);
 
 

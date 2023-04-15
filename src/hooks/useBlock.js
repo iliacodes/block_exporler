@@ -1,6 +1,5 @@
 import { Alchemy, Network, Block } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
-require('dotenv').config();
 import useBlockNumber from './useBlockNumber';
 
 const settings = {
