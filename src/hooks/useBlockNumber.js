@@ -19,7 +19,7 @@ function useBlockNumber () {
 
     getBlockNumber();
 
-    const intervalId = setInterval(getblockNumber, 1000*60);
+    const intervalId = setInterval(getblockNumber, 1000*120);
     return () => clearInterval(intervalId);
 
   }, []);
