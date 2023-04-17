@@ -1,6 +1,5 @@
-import { Alchemy } from 'alchemy-sdk';
+import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
-
 
 const settings = {
   apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
@@ -8,7 +7,6 @@ const settings = {
 };
 
 const alchemy = new Alchemy(settings);
-
 
 function useBlockNumber () {
   const [blockNumber, setBlockNumber] = useState(0);
@@ -20,7 +18,7 @@ function useBlockNumber () {
 
     getBlockNumber();
 
-    const intervalId = setInterval(getblockNumber, 1000*120);
+    const intervalId = setInterval(getBlockNumber, 1000*120);
     return () => clearInterval(intervalId);
 
   }, []);

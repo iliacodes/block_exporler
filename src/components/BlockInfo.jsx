@@ -1,10 +1,12 @@
 import React from 'react';
+import useBlockNumber from '../hooks/useBlockNumber'
 
+const BlockInfo = () => {
+  const { data: blockNumber } = useBlockNumber();
 
-const BlockInfo = ({ block }) => {
   return (
     <div>
-      <h3>Block Info</h3>
+        <p>Current block number: {blockNumber}</p>
     </div>
   );
 }

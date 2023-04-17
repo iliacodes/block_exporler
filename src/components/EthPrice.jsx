@@ -1,9 +1,11 @@
 import React from 'react';
+import useEthPrice from '../hooks/useEthPrice';
 
-const EthPrice = ({ ethPrice }) => {
+const EthPrice = () => {
+  const ethPrice  = useEthPrice();
   return (
     <div>
-      <h3>Eth Price</h3>
+      <h3>Eth Price: {ethPrice} </h3>
     </div>
   );
 }

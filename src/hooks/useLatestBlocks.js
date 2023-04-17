@@ -1,52 +1,25 @@
-import * as Alchemy from "@alch/alchemy-web3";
+import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from "react";
-import { useBlockNumber } from "./useBlockNumber";
-
-const alchemy = new Alchemy(settings);
-
+import useBlockNumber from "./useBlockNumber";
 
 const settings = {
   apiKey: process.env.REACT_APP_ALCHEMY_API_KEY,
   network: Network.ETH_MAINNET,
 };
 
-function useLatestBlocks() {
-  const [blocks, setBlocks] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState();
+const alchemy = new Alchemy(settings);
 
-  const { data: blockNumber = 0 } = useBlockNumber();
 
-  useEffect(() => {
-    const fetchBlocks = async () => {
-      try {
-        const newBlocks = [];
-        let latestBlockNumber = await alchemy.getLatestBlockNumber();
-
-        if (latestBlockNumber <= 0) {
-          setBlocks(newBlocks);
-          setLoading(false);
-          return;
-        }
-
-        for (let i = 0; i < 10; i++) {
-          latestBlockNumber -= 1;
-          const block = await alchemy.getBlock(latestBlockNumber);
-          newBlocks.push(block);
-        }
-
-        setBlocks(newBlocks);
-        setLoading(false);
-      } catch (error) {
-        setError(error);
-        setLoading(false);
-      }
-    };
-
-    fetchBlocks();
-  }, [blockNumber]);
-
-  return { blocks, isLoading, error };
+export const useLatestBlocks = async () => {
+  const latestBlocks = [];
+  const latestBlock = await alchemy.core.getBlockNumber();
+  let block = latestBlock;
+  while (block > latestBlock - 10) {
+    const _block = await alchemy.core.getBlock(block);
+    latestBlocks.push(_block);
+    block--;
+  }
+  return latestBlocks;
 };
 
 export default useLatestBlocks;
