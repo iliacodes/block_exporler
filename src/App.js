@@ -21,24 +21,13 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function App() {
-  const [blockNumber, setBlockNumber] = useState();
-
-  useEffect(() => {
-    async function getBlockNumber() {
-      setBlockNumber(await alchemy.core.getBlockNumber());
-    }
-
-    getBlockNumber();
-  });
 
   return (
   <div className="App">
-    Block Number: {blockNumber}
     <BlockInfo />
     <EthPrice />
     <BlockTable />
     <TxTable />
-    <EthBalance />
 
     </div>
   );

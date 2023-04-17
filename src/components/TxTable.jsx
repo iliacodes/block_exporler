@@ -11,6 +11,10 @@ const formatAddress = (address) => {
   return `${address.slice(0,5)}...${address.slice(-5)}`
 }
 
+const handleTxClick = (txHash) => {
+  window.location.href = `https://etherscan.io/tx/${txHash}`;
+}
+
 const TxTable = () => {
   const [txs, setTxs] = useState([]);
 
@@ -45,7 +49,9 @@ const TxTable = () => {
           {txs.map((tx) => (
             <tr key={tx}>
               <td>
-                {formatAddress(tx.blockHash)}
+                <a href="#" onClick={() => handleTxClick(tx.hash)}>
+                {formatAddress(tx.hash)}
+                </a>
               </td>
               <td>{formatAddress(tx.from)}</td>
               <td>{formatAddress(tx.to)}</td>
