@@ -1,7 +1,7 @@
 import './App.css';
 import { Alchemy, Network } from 'alchemy-sdk';
 import { useEffect, useState } from 'react';
-import {BlockInfo, BlockTable, EthPrice} from './components';
+import {BlockInfo, BlockTable, EthPrice, EthBalance, TxTable} from './components';
 
 
 // Refer to the README doc for more information about using API
@@ -37,6 +37,9 @@ function App() {
     <BlockInfo />
     <EthPrice />
     <BlockTable />
+    <TxTable />
+    <EthBalance />
+
     </div>
   );
 }

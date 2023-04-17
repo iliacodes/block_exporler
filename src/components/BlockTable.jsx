@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
 import useLatestBlocks from '../hooks/useLatestBlocks';
+import './blockTable.css'
+import { Utils } from 'alchemy-sdk';
+
+const formatAddress = (address) => {
+  return `${address.slice(0,5)}...${address.slice(-5)}`
+}
 
 const BlockTable = () => {
   const [blocks, setBlocks] = useState([]);
@@ -7,8 +13,8 @@ const BlockTable = () => {
   useEffect(() => {
     const fetchBlocks = async () => {
       try {
-        const getLatestBlocks = useLatestBlocks; // Import the hook as a function
-        const latestBlocks = await getLatestBlocks(); // Call the hook here
+        const getLatestBlocks = useLatestBlocks; 
+        const latestBlocks = await getLatestBlocks();
         setBlocks(latestBlocks);
       } catch (error) {
         console.error(error);
@@ -18,10 +24,14 @@ const BlockTable = () => {
     fetchBlocks();
   }, []);
 
+  const handleBlockClick = (blockNumber) => {
+    window.location.href = `https://etherscan.io/block/${blockNumber}`;
+  };
+
   return (
-    <div>
-      <h3>Block Info:</h3>
-      <table>
+    <div className="block-table-card">
+      <h3>Blocks</h3>
+      <table className="card-placement">
         <thead>
           <tr>
             <th>Block Number</th>
@@ -32,9 +42,13 @@ const BlockTable = () => {
         <tbody>
           {blocks.map((block) => (
             <tr key={block.number}>
-              <td>{block.number}</td>
+              <td>
+                <a href="#" onClick={() => handleBlockClick(block.number)}>
+                  {block.number}
+                </a>
+              </td>
               <td>{block.timestamp}</td>
-              <td>{block.miner}</td>
+              <td>{formatAddress(block.miner)}</td>
             </tr>
           ))}
         </tbody>

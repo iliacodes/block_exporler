@@ -1,0 +1,9 @@
+.eth-price-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+  border-bottom-right-radius: 5px;
+}
